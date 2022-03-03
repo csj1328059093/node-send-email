@@ -1,0 +1,29 @@
+{
+  "name": "node-send-email",
+  "version": "1.0.5",
+  "description": "This is a dependency package based on nodemailer for nodejs to send mail, which combines the required parameters and is more convenient to use.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/csj1328059093/node-send-email.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/csj1328059093/node-send-email/issues"
+  },
+  "homepage": "https://github.com/csj1328059093/node-send-email#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.17.6",
+    "@babel/core": "^7.17.5",
+    "@babel/preset-env": "^7.16.11"
+  },
+  "type": "module",
+  "dependencies": {
+    "nodemailer": "^6.7.2"
+  }
+}
