@@ -41,11 +41,12 @@ app.post('/api/email', async (req, res) => {
         ` 
     };
     
-    await sendMail.default(params, (result) => {
+    await sendMail.default(params, (result,info) => {
         if (result) {
             res.send({code: 1, msg: 'Sending verification code succeeded'})
         } else {
             res.send({code: 0, msg: 'Failed to send verification code, please try again later.'})
+            console.log(info)
         }
     })
 });
@@ -90,11 +91,12 @@ app.post('/api/email', async (req, res) => {
         ` 
     };
     
-    await sendMail.default(params, (result) => {
+    await sendMail.default(params, (result,info) => {
         if (result) {
             res.send({code: 1, msg: '发送验证码成功'})
         } else {
             res.send({code: 0, msg: '发送验证码失败，请稍后重试'})
+            console.log(info)
         }
     })
 });
