@@ -1,7 +1,7 @@
 import nodemailer from 'nodemailer'
-import types from "./service.js";
+import types from "./service.ts";
 
-const func = async (params, callback) => {
+const fun = async (params, callback) => {
     const {type = 'qq', name = '', smtp = '', from = '', ...other} = params
     let nodeMail = nodemailer.createTransport({
         ...types[type],
@@ -15,8 +15,8 @@ const func = async (params, callback) => {
         ...other
     };
     await nodeMail.sendMail(mail, (err, info) => {
-        callback(!err)
+        callback(!err, info)
     })
 }
 
-export default func
+export default fun
