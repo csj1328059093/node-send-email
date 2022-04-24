@@ -9466,13 +9466,35 @@ var require_nodemailer = __commonJS({
 // src/index.ts
 var src_exports = {};
 __export(src_exports, {
-  default: () => src_default
+  default: () => src_default,
+  sendEmail: () => sendEmail
 });
 module.exports = __toCommonJS(src_exports);
 var import_nodemailer = __toESM(require_nodemailer());
-
-// src/service.ts
-var service_default = {
+var types = {
+  "qq": {
+    "domains": ["qq.com"],
+    "host": "smtp.qq.com",
+    "port": 465,
+    "secure": true
+  },
+  "126": {
+    "host": "smtp.126.com",
+    "port": 465,
+    "secure": true
+  },
+  "163": {
+    "host": "smtp.163.com",
+    "port": 465,
+    "secure": true
+  },
+  "gmail": {
+    "aliases": ["Google Mail"],
+    "domains": ["gmail.com", "googlemail.com"],
+    "host": "smtp.gmail.com",
+    "port": 465,
+    "secure": true
+  },
   "1und1": {
     "host": "smtp.1und1.de",
     "port": 465,
@@ -9508,13 +9530,6 @@ var service_default = {
     "aliases": ["Gandi", "Gandi Mail"],
     "host": "mail.gandi.net",
     "port": 587
-  },
-  "gmail": {
-    "aliases": ["Google Mail"],
-    "domains": ["gmail.com", "googlemail.com"],
-    "host": "smtp.gmail.com",
-    "port": 465,
-    "secure": true
   },
   "secureserver": {
     "host": "smtpout.secureserver.net",
@@ -9611,12 +9626,6 @@ var service_default = {
     "port": "465",
     "secure": true
   },
-  "qq": {
-    "domains": ["qq.com"],
-    "host": "smtp.qq.com",
-    "port": 465,
-    "secure": true
-  },
   "exmail.qq": {
     "aliases": ["QQ Enterprise"],
     "domains": ["exmail.qq.com"],
@@ -9689,24 +9698,12 @@ var service_default = {
     "port": 465,
     "secure": true,
     "authMethod": "LOGIN"
-  },
-  "126": {
-    "host": "smtp.126.com",
-    "port": 465,
-    "secure": true
-  },
-  "163": {
-    "host": "smtp.163.com",
-    "port": 465,
-    "secure": true
   }
 };
-
-// src/index.ts
-var fun = async (params, callback) => {
+var sendEmail = async (params, callback) => {
   const { type = "qq", name = "", smtp = "", from = "", ...other } = params;
   let nodeMail = import_nodemailer.default.createTransport({
-    ...service_default[type],
+    ...types[type],
     auth: {
       user: from,
       pass: smtp
@@ -9720,6 +9717,9 @@ var fun = async (params, callback) => {
     callback(!err, info);
   });
 };
-var src_default = fun;
+var nodeSendEmail = { sendEmail };
+var src_default = nodeSendEmail;
 // Annotate the CommonJS export names for ESM import in node:
-0 && (module.exports = {});
+0 && (module.exports = {
+  sendEmail
+});

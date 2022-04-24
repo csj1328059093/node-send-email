@@ -13,7 +13,7 @@ Two parameters:
 - **callback function**, with the result value of Boolean type, to determine whether the transmission is successful.
 ```javascript
 //...
-const sendMail = require('node-send-email')
+const {sendMail} = require('node-send-email')
 //...
 app.post('/api/email', async (req, res) => {
     //...
@@ -21,7 +21,7 @@ app.post('/api/email', async (req, res) => {
     // Parameters required for sending mail
     const params = {
         // Email type, @qq.com will send qq, @163.com will send 163, otherwise, it will be qq by default.
-        // Other types can be found in node_nodules/node-send-email/service.js.
+        // Other types can be found in node_nodules/node-send-email/src/service.ts.
         type:'qq',
         // addresser
         name: 'moon',
@@ -41,7 +41,7 @@ app.post('/api/email', async (req, res) => {
         ` 
     };
     
-    await sendMail.default(params, (result,info) => {
+    await sendMail(params, (result,info) => {
         if (result) {
             res.send({code: 1, msg: 'Sending verification code succeeded'})
         } else {
@@ -63,7 +63,7 @@ app.post('/api/email', async (req, res) => {
  - 一个**回调函数**，result值为Boolean类型，判断是否发送成功。
 ```javascript
 //...
-const sendMail = require('node-send-email')
+const {sendMail} = require('node-send-email')
 //...
 app.post('/api/email', async (req, res) => {
     //...
@@ -71,7 +71,7 @@ app.post('/api/email', async (req, res) => {
     //发送邮件需要的入参
     const params = {
         // 邮箱类型，@qq.com就传qq，@163.com就是传163，不传的话默认为qq
-        // 其余类型可以在node_modules/node-send-email/service.js中找到
+        // 其余类型可以在node_modules/node-send-email/src/service.ts中找到
         type:'qq',
         // 发件人
         name: '月亮',
@@ -91,7 +91,7 @@ app.post('/api/email', async (req, res) => {
         ` 
     };
     
-    await sendMail.default(params, (result,info) => {
+    await sendMail(params, (result,info) => {
         if (result) {
             res.send({code: 1, msg: '发送验证码成功'})
         } else {
