@@ -1,3 +1,4 @@
+// @ts-ignore
 import nodemailer from 'nodemailer'
 
 const types = {
@@ -14,13 +15,6 @@ const types = {
     },
     "163": {
         "host": "smtp.163.com",
-        "port": 465,
-        "secure": true
-    },
-    "gmail": {
-        "aliases": ["Google Mail"],
-        "domains": ["gmail.com", "googlemail.com"],
-        "host": "smtp.gmail.com",
         "port": 465,
         "secure": true
     },
@@ -59,6 +53,13 @@ const types = {
         "aliases": ["Gandi", "Gandi Mail"],
         "host": "mail.gandi.net",
         "port": 587
+    },
+    "gmail": {
+        "aliases": ["Google Mail"],
+        "domains": ["gmail.com", "googlemail.com"],
+        "host": "smtp.gmail.com",
+        "port": 465,
+        "secure": true
     },
     "secureserver": {
         "host": "smtpout.secureserver.net",
@@ -170,7 +171,6 @@ const types = {
         "port": "465",
         "secure": true
     },
-
     "exmail.qq": {
         "aliases": ["QQ Enterprise"],
         "domains": ["exmail.qq.com"],
@@ -248,8 +248,9 @@ const types = {
         "port": 465,
         "secure": true,
         "authMethod": "LOGIN"
-    }
+    },
 }
+
 
 type Type = keyof typeof types
 
@@ -273,7 +274,7 @@ interface Params {
 type Callback = (result: any, info: any) => {}
 
 // @ts-ignore
-export const sendEmail = async (params: Params, callback: Callback) => {
+export const sendEmail = async (params: Params, callback: Callback): Promise<void> => {
     const {type = 'qq', name = '', smtp = '', from = '', ...other} = params
     let nodeMail = nodemailer.createTransport({
         ...types[type],

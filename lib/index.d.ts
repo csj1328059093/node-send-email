@@ -15,13 +15,6 @@ declare const types: {
         port: number;
         secure: boolean;
     };
-    gmail: {
-        aliases: string[];
-        domains: string[];
-        host: string;
-        port: number;
-        secure: boolean;
-    };
     "1und1": {
         host: string;
         port: number;
@@ -57,6 +50,13 @@ declare const types: {
         aliases: string[];
         host: string;
         port: number;
+    };
+    gmail: {
+        aliases: string[];
+        domains: string[];
+        host: string;
+        port: number;
+        secure: boolean;
     };
     secureserver: {
         host: string;
@@ -243,3 +243,4 @@ declare const nodeSendEmail: {
     sendEmail: (params: Params, callback: Callback) => Promise<void>;
 };
 export default nodeSendEmail;
+//# sourceMappingURL=index.d.ts.map

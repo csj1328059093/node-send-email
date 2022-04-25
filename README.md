@@ -21,7 +21,7 @@ app.post('/api/email', async (req, res) => {
     // Parameters required for sending mail
     const params = {
         // Email type, @qq.com will send qq, @163.com will send 163, otherwise, it will be qq by default.
-        // Other types can be found in node_nodules/node-send-email/src/service.ts.
+        // Other types can be found in node_nodules/node-send-email/lib/service.js.
         type:'qq',
         // addresser
         name: 'moon',
@@ -71,7 +71,7 @@ app.post('/api/email', async (req, res) => {
     //发送邮件需要的入参
     const params = {
         // 邮箱类型，@qq.com就传qq，@163.com就是传163，不传的话默认为qq
-        // 其余类型可以在node_modules/node-send-email/src/service.ts中找到
+        // 其余类型可以在node_modules/node-send-email/lib/service.js中找到
         type:'qq',
         // 发件人
         name: '月亮',
