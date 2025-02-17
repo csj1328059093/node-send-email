@@ -1,21 +1,5 @@
-declare const types: {
-    qq: {
-        domains: string[];
-        host: string;
-        port: number;
-        secure: boolean;
-    };
-    "126": {
-        host: string;
-        port: number;
-        secure: boolean;
-    };
-    "163": {
-        host: string;
-        port: number;
-        secure: boolean;
-    };
-    "1und1": {
+declare const _default: {
+    '1und1': {
         host: string;
         port: number;
         secure: boolean;
@@ -62,11 +46,11 @@ declare const types: {
         host: string;
         port: number;
     };
-    "asia.secureserver": {
+    'asia.secureserver': {
         host: string;
         port: number;
     };
-    "europe.secureserver": {
+    'europe.secureserver': {
         host: string;
         port: number;
     };
@@ -79,16 +63,16 @@ declare const types: {
         host: string;
         port: number;
     };
-    "mail.me": {
+    'mail.me': {
         aliases: string[];
         domains: string[];
         host: string;
         port: number;
     };
-    "mail.ee": {
+    'mail.ee': {
         host: string;
     };
-    "mail.ru": {
+    'mail.ru': {
         host: string;
         port: number;
         secure: boolean;
@@ -150,10 +134,16 @@ declare const types: {
     };
     mxhichina: {
         host: string;
-        port: string;
+        port: number;
         secure: boolean;
     };
-    "exmail.qq": {
+    qq: {
+        domains: string[];
+        host: string;
+        port: number;
+        secure: boolean;
+    };
+    'exmail.qq': {
         aliases: string[];
         domains: string[];
         host: string;
@@ -182,17 +172,17 @@ declare const types: {
         port: number;
         secure: boolean;
     };
-    "SES-US-EAST-1": {
+    'SES-US-EAST-1': {
         host: string;
         port: number;
         secure: boolean;
     };
-    "SES-US-WEST-2": {
+    'SES-US-WEST-2': {
         host: string;
         port: number;
         secure: boolean;
     };
-    "SES-EU-WEST-1": {
+    'SES-EU-WEST-1': {
         host: string;
         port: number;
         secure: boolean;
@@ -226,21 +216,15 @@ declare const types: {
         secure: boolean;
         authMethod: string;
     };
+    '126': {
+        host: string;
+        port: number;
+        secure: boolean;
+    };
+    '163': {
+        host: string;
+        port: number;
+        secure: boolean;
+    };
 };
-declare type Type = keyof typeof types;
-interface Params {
-    type: Type;
-    name: string;
-    smtp: string;
-    from: string;
-    subject: string;
-    to: string;
-    html: string;
-}
-declare type Callback = (result: any, info: any) => {};
-export declare const sendEmail: (params: Params, callback: Callback) => Promise<void>;
-declare const nodeSendEmail: {
-    sendEmail: (params: Params, callback: Callback) => Promise<void>;
-};
-export default nodeSendEmail;
-//# sourceMappingURL=index.d.ts.map
+export default _default;

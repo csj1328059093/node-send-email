@@ -13,7 +13,7 @@ Two parameters:
 - **callback function**, with the result value of Boolean type, to determine whether the transmission is successful.
 ```javascript
 //...
-const {sendMail} = require('node-send-email')
+const sendMail = require('node-send-email')
 //...
 app.post('/api/email', async (req, res) => {
     //...
@@ -21,7 +21,6 @@ app.post('/api/email', async (req, res) => {
     // Parameters required for sending mail
     const params = {
         // Email type, @qq.com will send qq, @163.com will send 163, otherwise, it will be qq by default.
-        // Other types can be found in node_nodules/node-send-email/lib/service.js.
         type:'qq',
         // addresser
         name: 'moon',
@@ -41,12 +40,11 @@ app.post('/api/email', async (req, res) => {
         ` 
     };
     
-    await sendMail(params, (result,info) => {
+    await sendMail(params, (result) => {
         if (result) {
             res.send({code: 1, msg: 'Sending verification code succeeded'})
         } else {
             res.send({code: 0, msg: 'Failed to send verification code, please try again later.'})
-            console.log(info)
         }
     })
 });
@@ -63,7 +61,7 @@ app.post('/api/email', async (req, res) => {
  - 一个**回调函数**，result值为Boolean类型，判断是否发送成功。
 ```javascript
 //...
-const {sendMail} = require('node-send-email')
+const sendMail = require('node-send-email')
 //...
 app.post('/api/email', async (req, res) => {
     //...
@@ -71,7 +69,6 @@ app.post('/api/email', async (req, res) => {
     //发送邮件需要的入参
     const params = {
         // 邮箱类型，@qq.com就传qq，@163.com就是传163，不传的话默认为qq
-        // 其余类型可以在node_modules/node-send-email/lib/service.js中找到
         type:'qq',
         // 发件人
         name: '月亮',
@@ -91,13 +88,28 @@ app.post('/api/email', async (req, res) => {
         ` 
     };
     
-    await sendMail(params, (result,info) => {
+    await sendMail(params, (result) => {
         if (result) {
             res.send({code: 1, msg: '发送验证码成功'})
         } else {
             res.send({code: 0, msg: '发送验证码失败，请稍后重试'})
-            console.log(info)
         }
     })
 });
+```
+
+# 3.0.0
+
+添加了对esm和Promise链式回调的支持，可以不再使用回调函数（仍然支持使用，不影响旧版本）。
+
+```javascript
+import { sendEmail } from 'node-send-email'
+params = { ... }
+sendEmail(params).then((info) => {
+  // 成功返回的一些相关信息
+  console.log(info)
+}).catch((err) => {
+  // 错误返回的报错信息
+  console.log(err)
+})
 ```

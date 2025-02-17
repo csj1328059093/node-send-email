@@ -1,14 +1,15 @@
 {
   "name": "node-send-email",
-  "version": "2.0.3",
+  "version": "3.0.1",
   "description": "This is a dependency package based on nodemailer for nodejs to send mail, which combines the required parameters and is more convenient to use.",
-  "main": "lib/index.js",
-  "types": [
-    "lib/index.d.ts"
+  "module": "lib/esm/index.js",
+  "main": "lib/cjs/index.js",
+  "types": "lib/types/index.d.ts",
+  "files": [
+    "lib"
   ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tsc && esbuild lib/index.ts --bundle --outdir=lib --platform=node"
+    "build": "tsc -p tsconfig.esm.json && tsc -p tsconfig.cjs.json"
   },
   "repository": {
     "type": "git",
@@ -27,6 +28,10 @@
   },
   "homepage": "https://github.com/csj1328059093/node-send-email#readme",
   "dependencies": {
+    "@types/nodemailer": "^6.4.17",
     "nodemailer": "^6.7.2"
+  },
+  "devDependencies": {
+    "esbuild": "^0.25.0"
   }
 }
